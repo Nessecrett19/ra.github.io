@@ -22,7 +22,7 @@ id="scene">
         <a-asset-item id="modelo2" src="https://cdn.glitch.global/8d63e2cc-7eda-4106-b802-3271831948b1/caballito_y_estrella_de_mar%20(1).glb?v=1697051950974"></a-asset-item>
      <a-asset-item id="modelo3" src="https://cdn.glitch.global/8d63e2cc-7eda-4106-b802-3271831948b1/cangrejo_robotico%20(4).glb?v=1697132179612"></a-asset-item>
 
-	      <audio id=sound" src="" preload="auto"></audio>
+	      <audio id=sound" src="medusa.mp3" preload="auto"></audio>
       
       
       </a-assets>
@@ -31,7 +31,7 @@ id="scene">
  cursor="fuse: false; rayOrigin: mouse;">
 			
 					
-			<a-entity gltf-model="#modelo" scale="0.5 0.5 0.5" rotation="-90 0 0" class="clickable" gesture-handler ></a-entity>
+			<a-entity gltf-model="#modelo" scale="0.5 0.5 0.5" rotation="-90 0 0" class="clickable" gesture-handler soundhandler></a-entity>
 			
 			</a-marker>
       
@@ -63,6 +63,18 @@ id="scene">
 			<a-entity camera></a-entity>
 			
 		</a-scene>
-		
+		<script>
+			AFRAME.registerComponent('soundhandler', {
+				tick: function () {
+					   var entity = document.querySelector('[sound]');
+					 if (document.querySelector('a-marker').object3D.visible == true) {
+						entity.components.sound.playSound();
+					} else {
+						entity.components.sound.pauseSound();
+					}
+
+				 }
+			});
+		</script>
 	</body>
 </html>
