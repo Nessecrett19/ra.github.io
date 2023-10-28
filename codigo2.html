@@ -1,0 +1,22 @@
+<script>
+AFRAME.registerComponent('soundhandler', {
+tick: function () {
+var entity = document.querySelector('#audio1');
+var entity2 = document.querySelector('#audio2');
+
+
+if (document.querySelector('#delfin').object3D.visible == true) {
+entity2.components.sound.pauseSound();
+entity.components.sound.playSound();
+
+} else if (document.querySelector('#coco').object3D.visible == true) {
+entity.components.sound.pauseSound();
+ entity2.components.sound.playSound();
+
+}else{
+entity.components.sound.pauseSound();
+entity2.components.sound.pauseSound();
+ }
+}
+});
+</script>
