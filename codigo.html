@@ -23,11 +23,14 @@ id="scene">
      <a-asset-item id="modelo3" src="https://cdn.glitch.global/8d63e2cc-7eda-4106-b802-3271831948b1/cangrejo_robotico%20(4).glb?v=1697132179612"></a-asset-item>
 
 	      <audio id="sound" src="medusa.mp3" preload="auto"></audio>
+	<audio id="sound1" src="tortuga.mp3" preload="auto"></audio>
+	      <audio id="sound2" src="cangrejos.mp3" preload="auto"></audio>
+	      <audio id="sound3" src="estrellas.mp3" preload="auto"></audio>
       
       
       </a-assets>
 		
-			<a-marker type="barcode" value="19" raycaster="objects: .clickable" emitevents="true"
+			<a-marker id="medusa" type="barcode" value="19" raycaster="objects: .clickable" emitevents="true"
  cursor="fuse: false; rayOrigin: mouse;">
 			
 					
@@ -35,46 +38,58 @@ id="scene">
 			
 			</a-marker>
       
-			<a-marker type="barcode" value="33" raycaster="objects: .clickable" emitevents="true"
+			<a-marker id="tortuga" type="barcode" value="33" raycaster="objects: .clickable" emitevents="true"
  cursor="fuse: false; rayOrigin: mouse;">
 					
-			<a-entity gltf-model="#modelo1" scale="0.5 0.5 0.5" rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
+			<a-entity gltf-model="#modelo1" scale="0.5 0.5 0.5" rotation="-90 0 0" class="clickable" gesture-handler soundhandler></a-entity>
 			
 			</a-marker>
       
-      <a-marker type="barcode" value="5" raycaster="objects: .clickable" emitevents="true"
+      <a-marker id="estrella" type="barcode" value="5" raycaster="objects: .clickable" emitevents="true"
  cursor="fuse: false; rayOrigin: mouse;">
 			
 					
-			<a-entity gltf-model="#modelo2" scale="0.5 0.5 0.5" ></a-entity>
+			<a-entity gltf-model="#modelo2" scale="0.5 0.5 0.5" class="clickable" gesture-handler soundhandler></a-entity>
 			
 			</a-marker>
       
-      <a-marker type="barcode" value="12" raycaster="objects: .clickable" emitevents="true"
+      <a-marker id="cangrejo" type="barcode" value="12" raycaster="objects: .clickable" emitevents="true"
  cursor="fuse: false; rayOrigin: mouse;">
 			
 					
-			<a-entity gltf-model="#modelo3" scale="0.2 0.2 0.2" rotation="-90 0 0"></a-entity>
+			<a-entity gltf-model="#modelo3" scale="0.2 0.2 0.2" rotation="-90 0 0" class="clickable" gesture-handler soundhandler></a-entity>
         
 			
 			</a-marker>
 			
-			<a-entity sound="src: #sound" autoplay="false"></a-entity>
+			<a-entity id="audio1" sound="src: #sound" autoplay="false"></a-entity>
+			<a-entity id="audio2" sound="src: #sound1" autoplay="false"></a-entity>
+			<a-entity id="audio3" sound="src: #sound2" autoplay="false"></a-entity>
+			<a-entity id="audio4" sound="src: #sound3" autoplay="false"></a-entity>
 			<a-entity camera></a-entity>
 			
 		</a-scene>
 		<script>
-			AFRAME.registerComponent('soundhandler', {
-				tick: function () {
-					   var entity = document.querySelector('[sound]');
-					 if (document.querySelector('a-marker').object3D.visible == true) {
-						entity.components.sound.playSound();
-					} else {
-						entity.components.sound.pauseSound();
-					}
+AFRAME.registerComponent('soundhandler', {
+tick: function () {
+var entity = document.querySelector('#audio1');
+var entity2 = document.querySelector('#audio2');
 
-				 }
-			});
-		</script>
+
+if (document.querySelector('#medusa').object3D.visible == true) {
+entity2.components.sound.pauseSound();
+entity.components.sound.playSound();
+
+} else if (document.querySelector('#tortuga').object3D.visible == true) {
+entity.components.sound.pauseSound();
+ entity2.components.sound.playSound();
+
+}else{
+entity.components.sound.pauseSound();
+entity2.components.sound.pauseSound();
+ }
+}
+});
+</script>
 	</body>
 </html>
