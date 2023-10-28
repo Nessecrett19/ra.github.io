@@ -24,8 +24,8 @@ id="scene">
 
 	      <audio id="sound" src="medusa.mp3" preload="auto"></audio>
 	<audio id="sound1" src="tortuga.mp3" preload="auto"></audio>
-	      <audio id="sound2" src="cangrejos.mp3" preload="auto"></audio>
-	      <audio id="sound3" src="estrellas.mp3" preload="auto"></audio>
+	      <audio id="sound2" src="estrellas.mp3" preload="auto"></audio>
+	      <audio id="sound3" src="cangrejos.mp3" preload="auto"></audio>
       
       
       </a-assets>
@@ -74,19 +74,44 @@ AFRAME.registerComponent('soundhandler', {
 tick: function () {
 var entity = document.querySelector('#audio1');
 var entity2 = document.querySelector('#audio2');
+var entity3 = document.querySelector('#audio3');
+var entity4 = document.querySelector('#audio4');
+
 
 
 if (document.querySelector('#medusa').object3D.visible == true) {
 entity2.components.sound.pauseSound();
+entity3.components.sound.pauseSound();
+entity4.components.sound.pauseSound();
 entity.components.sound.playSound();
 
 } else if (document.querySelector('#tortuga').object3D.visible == true) {
 entity.components.sound.pauseSound();
- entity2.components.sound.playSound();
+entity3.components.sound.pauseSound();
+entity4.components.sound.pauseSound();
+entity2.components.sound.playSound();
 
-}else{
+}
+if (document.querySelector('#estrella').object3D.visible == true) {
+entity2.components.sound.pauseSound();
+entity.components.sound.pauseSound();
+entity4.components.sound.pauseSound();
+entity3.components.sound.playSound();
+
+}
+	if (document.querySelector('#cangrejo').object3D.visible == true) {
+entity2.components.sound.pauseSound();
+entity.components.sound.pauseSound();
+entity3.components.sound.pauseSound();
+entity4.components.sound.playSound();
+
+}
+
+else{
 entity.components.sound.pauseSound();
 entity2.components.sound.pauseSound();
+entity3.components.sound.pauseSound();
+entity4.components.sound.pauseSound();
  }
 }
 });
